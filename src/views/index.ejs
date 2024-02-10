@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +8,21 @@
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <title>Abarrotes TI</title>
-    
+
 </head>
+
 <body>
-    <div data-role="page">
+    <div data-role="page" data-theme="b">
         <div data-role="header">
             <h1>Abarrotes TI</h1>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#" data-icon="home">Inicio</a></li>
+                    <li><a href="#" data-icon="eye" class="ui-btn-active">Productos</a></li>
+                    <li><a href="#" data-icon="user">Empleados</a></li>
+                </ul>
+                          
+            </div>
         </div>
         <div data-role="content">
             <form action="/api/products/" method="post">
@@ -25,16 +34,39 @@
                 <input type="number" name="stock" id="textinput-2" placeholder="Existencia">
                 <input type="date" name="expiredData" id="textinput-2" placeholder="Precio">
                 <label for="flip-2">Activo:</label>
-                <select name="flip-2" id="flip-2" data-role="slider">
-                    <option value="0">No</option>
-                    <option value="1">Si</option>
+                <select name="status" id="flip-2" data-role="slider">
+                         <option value="0">No</option>
+                        <option value="1">Si</option>
                 </select>
                 <button type="submit" id="submit-6" class="ui-shadow ui-btn ui-corner-all ui-mini">Guardar</button>
             </form>
+
+            <form>
+                    <input data-type="search" id="searchForCollapsibleSetChildren">
+            </form>
+                <div data-role="collapsibleset" data-filter="true" data-children="> div, > div div ul li"
+                data-inset="true" id="collapsiblesetForFilterChildren" data-input="#searchForCollapsibleSetChildren">
+                    <% products.forEach((product)=>{  %>
+                                <div data-role="collapsible" data-filtertext="<%= product.description %>">
+                                    <h3><%= product.description %></h3>
+                                    <ul data-role="listview" data-insert="false">
+                                        <li>Codigo de barras: <%=product.barcode%></li>
+                                        <li>Marca: <%=product.brand%></li>
+                                        <li>Precio de compra: <%=product.price%></li>
+                                        <li>Precio de venta: <%=product.cost%></li>
+                                        <li>Existencia: <%=product.cost%></li>
+                                        <li>Fecha de caducidad: <%=product.expiredData%></li>
+                                        <li>Estatus: <%=product.status%></li>
+                                    </ul>
+                                </div>
+                    <%})%>
+                </div>
+
         </div>
         <div data-role="footer">
             <h5>Developed by Jaime Vazquez </h5>
         </div>
     </div>
 </body>
+
 </html>
