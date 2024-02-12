@@ -46,21 +46,50 @@
             </form>
                 <div data-role="collapsibleset" data-filter="true" data-children="> div, > div div ul li"
                 data-inset="true" id="collapsiblesetForFilterChildren" data-input="#searchForCollapsibleSetChildren">
-                    <% products.forEach((product)=>{  %>
-                                <div data-role="collapsible" data-filtertext="<%= product.description %>">
-                                    <h3><%= product.description %></h3>
-                                    <ul data-role="listview" data-insert="false">
-                                        <li>Codigo de barras: <%=product.barcode%></li>
-                                        <li>Marca: <%=product.brand%></li>
-                                        <li>Precio de compra: <%=product.price%></li>
-                                        <li>Precio de venta: <%=product.cost%></li>
-                                        <li>Existencia: <%=product.cost%></li>
-                                        <li>Fecha de caducidad: <%=product.expiredData%></li>
-                                        <li>Estatus: <%=product.status%></li>
-                                    </ul>
-                                </div>
+                <% products.forEach((product)=>{ %>
+                            <div data-role="collapsible" data-filtertext="<%= product.description %>">
+                        <h3>
+                            <%= product.description %>
+                        </h3>
+                        <ul data-role="listview" data-insert="false">
+                            <li>Codigo de barras: <%=product.barcode%>
+                            </li>
+                            <li>Descripcion: <%=product.description%>
+                            </li>
+                            <li>Marca: <%=product.brand%>
+                            </li>
+                            <li>Precio de compra: <%=product.price%>
+                            </li>
+                            <li>Precio de venta: <%=product.cost%>
+                            </li>
+                            <li>Existencia: <%=product.cost%>
+                            </li>
+                            <li>Fecha de caducidad: <%=product.expiredData%>
+                            </li>
+                            <li>Estatus: <%=product.status%>
+                            </li>
+                        </ul>
+                    </div>
                     <%})%>
                 </div>
+                <% products.forEach((product)=>{ %>
+                <form action="/api/products/<%= product.barcode %>"  method="PUT"> 
+                    <input type="hidden" name="_method" value="PUT">
+                    <input type="text" name="barcode"  id="textinput-2" placeholder="Código de barras">
+                    <input type="text" name="description" id="textinput-2" placeholder="Descripción">
+                    <input type="text" name="brand" id="textinput-2" placeholder="Marca">
+                    <input type="number" name="price" id="textinput-2" placeholder="Precio de compra">
+                    <input type="number" name="cost" id="textinput-2" placeholder="Precio de venta">
+                    <input type="number" name="stock" id="textinput-2" placeholder="Existencia">
+                    <input type="date" name="expiredData" id="textinput-2" placeholder="Precio">
+                    <label for="flip-2">Activo:</label>
+                    <select name="status" id="flip-2" data-role="slider">
+                        <option value="0">No</option>
+                        <option value="1">Si</option>
+                    </select>
+                    <button type="submit" id="submit-6" class="ui-shadow ui-btn ui-corner-all ui-mini">Modificar</button>
+                </form>
+                <%})%> 
 
         </div>
         <div data-role="footer">

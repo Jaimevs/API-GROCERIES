@@ -4,9 +4,8 @@ import productDAO from "../dao/products.dao.js";
 export const getAll = (req, res) => {
   productDAO.getAll()
     .then(products => {
-      if(products!=null)
-        res.render('../src/views/index.ejs',{products});
-        //res.json(products);
+      if(products != null)
+        res.render('../src/views/index.ejs', { products: products }); // Pasando el objeto products a la vista
       else
         res.json({
           status: 'error',
@@ -18,6 +17,7 @@ export const getAll = (req, res) => {
       });
     });
 };
+
 
 export const getOne = (req, res) => {
   productDAO.getOne(req.params.bc)
