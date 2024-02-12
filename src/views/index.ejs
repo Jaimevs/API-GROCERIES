@@ -47,10 +47,11 @@
                 <div data-role="collapsibleset" data-filter="true" data-children="> div, > div div ul li"
                 data-inset="true" id="collapsiblesetForFilterChildren" data-input="#searchForCollapsibleSetChildren">
                 <% products.forEach((product)=>{ %>
-                            <div data-role="collapsible" data-filtertext="<%= product.description %>">
+                    <div data-role="collapsible" data-filtertext="<%= product.description %>">
                         <h3>
                             <%= product.description %>
                         </h3>
+                      
                         <ul data-role="listview" data-insert="false">
                             <li>Codigo de barras: <%=product.barcode%>
                             </li>
@@ -68,10 +69,14 @@
                             </li>
                             <li>Estatus: <%=product.status%>
                             </li>
+                            <li><a href="/api/products/<%=product.barcode%>" class="ui-btn"></a></li>
+                            
                         </ul>
+                       
                     </div>
                     <%})%>
                 </div>
+                <!--
                 <% products.forEach((product)=>{ %>
                 <form action="/api/products/<%= product.barcode %>"  method="PUT"> 
                     <input type="hidden" name="_method" value="PUT">
@@ -90,6 +95,7 @@
                     <button type="submit" id="submit-6" class="ui-shadow ui-btn ui-corner-all ui-mini">Modificar</button>
                 </form>
                 <%})%> 
+                -->
 
         </div>
         <div data-role="footer">

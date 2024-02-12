@@ -21,9 +21,9 @@ export const getAll = (req, res) => {
 
 export const getOne = (req, res) => {
   productDAO.getOne(req.params.bc)
-    .then(result => {
-      if (result !== null) {
-        res.json(result);
+    .then((product) => {
+      if (product !== null) {
+        res.render('../src/views/edit.ejs', { product: product });
       } else {
         res.json({
           status: "Product not found"
@@ -31,6 +31,7 @@ export const getOne = (req, res) => {
       }
     })
     .catch(err => {
+      console.error(err); // Imprimir el error en la consola para obtener más detalles
       res.json({
         status: "Servidor no disponible"
       });
@@ -38,11 +39,13 @@ export const getOne = (req, res) => {
 };
 
 
+
+
 export const insertProduct = async (req, res) => {
   try {
     const result = await productDAO.insertProduct(req.body);
     if (result) {
-      res.redirect('/api/product')
+      res.redirect('/api/products/')
     } 
   } catch (err) {
     res.json({ status: "Server Unavailable" });
@@ -55,10 +58,8 @@ export const updateProduct = (req, res) => {
     productDAO.updateProduct(req.params.bc,req.body)
     .then(result=>{
       if(result)
-        res.json({
-            status:"Product updated "
-        });
-        else 
+        res.redirect('/api/products/')
+      else 
           res.json({status:"Service unavailable"});
     })
     .catch(erro=>{
@@ -75,8 +76,8 @@ export const deleteProduct = (req, res) => {
   productDAO.deleteProduct(req.params.bc)
   .then(result=>{
     if(result)
-      res.json({
-          status:"Product delete "
+        res.json({
+            status:"Product delete "
       });
       else 
         res.json({status:"Service unavailable"});

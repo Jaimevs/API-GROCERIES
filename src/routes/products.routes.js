@@ -9,7 +9,7 @@ router.get('/:bc', getOne);
 
 router.post('/', insertProduct); 
 
-router.put('/:bc', updateProduct);
+router.post('/:bc', updateProduct); //put
 
 router.delete('/:bc', deleteProduct);
 
