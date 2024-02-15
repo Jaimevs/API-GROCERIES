@@ -76,10 +76,8 @@ export const deleteProduct = (req, res) => {
   productDAO.deleteProduct(req.params.bc)
   .then(result=>{
     if(result)
-        res.json({
-            status:"Product delete "
-      });
-      else 
+        res.redirect('/api/products/')
+    else 
         res.json({status:"Service unavailable"});
   })
   .catch(erro=>{

@@ -69,8 +69,10 @@
                             </li>
                             <li>Estatus: <%=product.status%>
                             </li>
-                            <li><a href="/api/products/<%=product.barcode%>" class="ui-btn"></a></li>
-                            
+                            <li><a href="/api/products/<%=product.barcode%>" class="ui-btn">Editar</a></li>
+                            <form action="/api/products/<%= product.barcode %>"  method="delete"> 
+                            <li><button href="/api/products/" type="submit" id="submit-6" class="ui-shadow ui-btn ui-corner-all ui-mini">Eliminar</button></li>
+                            </form>
                         </ul>
                        
                     </div>
